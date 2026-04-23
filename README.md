@@ -78,7 +78,7 @@ Các bảng chính trong hệ thống:
 ### Trang sản phẩm
 ![Sản phẩm](images/product.png)
 
-### Giỏ hàng
+### Trang Giỏ hàng
 
 ![Giỏ hàng](images/cart.png)
 
