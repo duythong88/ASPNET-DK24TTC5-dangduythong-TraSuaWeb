@@ -72,16 +72,21 @@ Các bảng chính trong hệ thống:
 
 ## 📷 Hình ảnh minh họa
 
+
 ### Trang chủ
+
 ![Trang chủ](images/home.png)
 
 ### Trang sản phẩm
-![Sản phẩm](images/product.png)
 
-### Giỏ hàng
+![Trang sản phẩm](images/product.png)
+
+### Trang giỏ hàng
+
 ![Trang giỏ hàng](images/cart.png)
 
 ### Trang quản trị
+
 ![Trang quản trị](images/admin.png)
 
 ## 🚀 Hướng dẫn cài đặt và chạy project
