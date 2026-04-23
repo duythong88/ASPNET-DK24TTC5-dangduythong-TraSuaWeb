@@ -83,11 +83,11 @@ Các bảng chính trong hệ thống:
 
 ### Trang giỏ hàng
 
-![Trang giỏ hàng](images/cart.png)
+![Trang gio hang](images/cart.png)
 
 ### Trang quản trị
 
-![Trang quản trị](images/admin.png)
+![Trang quan tri](images/admin.png)
 
 ## 🚀 Hướng dẫn cài đặt và chạy project
 
