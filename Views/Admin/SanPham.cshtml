@@ -1,0 +1,65 @@
+﻿@model List<TraSuaWeb.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<div class="container mt-4">
+    <h2 class="text-success mb-4">Quản lý sản phẩm</h2>
+
+    <div class="mb-3">
+        <a asp-controller="Admin" asp-action="ThemSanPham" class="btn btn-primary">
+            + Thêm sản phẩm
+        </a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Mã SP</th>
+                <th>Tên sản phẩm</th>
+                <th>Mô tả</th>
+                <th>Hình ảnh</th>
+                <th>Size - Giá</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sp in Model)
+            {
+                <tr>
+                    <td>@sp.MaSP</td>
+                    <td>@sp.TenSP</td>
+                    <td>@sp.MoTa</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(sp.HinhAnh))
+                        {
+                            <img src="@sp.HinhAnh" width="80" class="border rounded" />
+                        }
+                    </td>
+                    <td>
+                        @if (sp.SizeSanPhams != null)
+                        {
+                            @foreach (var size in sp.SizeSanPhams)
+                            {
+                                <div>@size.TenSize - @size.DonGia.ToString("N0") đ</div>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="SuaSanPham" asp-route-id="@sp.MaSP"
+                               class="btn btn-warning btn-sm">
+                            Sửa
+                        </a>
+
+                        <a asp-controller="Admin" asp-action="XoaSanPham" asp-route-id="@sp.MaSP"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Anh có chắc muốn xóa sản phẩm này không?');">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

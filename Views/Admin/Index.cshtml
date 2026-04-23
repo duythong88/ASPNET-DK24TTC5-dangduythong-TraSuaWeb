@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Trang quản trị";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">Trang quản trị hệ thống</h2>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <a asp-controller="Admin" asp-action="SanPham" class="text-decoration-none">
+                <div class="card shadow-sm text-center p-4 h-100">
+                    <h4 class="text-success">Quản lý sản phẩm</h4>
+                    <p class="text-muted">Thêm, sửa, xóa sản phẩm</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Admin" asp-action="DonHang" class="text-decoration-none">
+                <div class="card shadow-sm text-center p-4 h-100">
+                    <h4 class="text-warning">Quản lý đơn hàng</h4>
+                    <p class="text-muted">Xem và xử lý đơn đặt hàng</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Admin" asp-action="KhachHang" class="text-decoration-none">
+                <div class="card shadow-sm text-center p-4 h-100">
+                    <h4 class="text-info">Quản lý khách hàng</h4>
+                    <p class="text-muted">Xem thông tin khách hàng</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a asp-controller="Admin" asp-action="DoanhThu" class="text-decoration-none">
+                <div class="card shadow-sm text-center p-4 h-100">
+                    <h4 class="text-danger">Thống kê doanh thu</h4>
+                    <p class="text-muted">Theo ngày, tháng, năm</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-controller="Admin" asp-action="OrderTaiQuay" class="text-decoration-none">
+                <div class="card shadow-sm text-center p-4 h-100">
+                    <h4 class="text-dark">Order tại quầy</h4>
+                    <p class="text-muted">Nhân viên tạo đơn trực tiếp cho khách</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+﻿@model TraSuaWeb.Models.OrderTaiQuayViewModel
+
+@{
+    ViewData["Title"] = "Order tại quầy";
+    decimal tongTien = Model.DanhSachMon.Sum(x => x.ThanhTien);
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Order dùm cho khách</h2>
+
+    @if (TempData["ThongBao"] != null)
+    {
+        <div class="alert alert-success">@TempData["ThongBao"]</div>
+    }
+
+    @if (TempData["ThongBaoLoi"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ThongBaoLoi"]</div>
+    }
+
+    <div class="card shadow-sm p-4 mb-4">
+        <h4 class="mb-3">Thêm món vào đơn</h4>
+
+        <form asp-action="ThemMonTaiQuay" method="post">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Khách hàng</label>
+                    <select asp-for="MaKH" asp-items="Model.DanhSachKhachHang" class="form-select">
+                        <option value="">-- Chọn khách hàng --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Sản phẩm</label>
+                    <select asp-for="MaSP" asp-items="Model.DanhSachSanPham" class="form-select" id="sanPhamSelect">
+                        <option value="">-- Chọn sản phẩm --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Size</label>
+                    <select asp-for="MaSize" class="form-select" id="sizeSelect">
+                        <option value="">-- Chọn size --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Số lượng</label>
+                    <input asp-for="SoLuong" class="form-control" value="1" min="1" />
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success">Thêm món</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="card shadow-sm p-4">
+        <h4 class="mb-3">Danh sách món trong đơn</h4>
+
+        @if (Model.DanhSachMon != null && Model.DanhSachMon.Count > 0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-warning">
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Size</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.DanhSachMon)
+                    {
+                        <tr>
+                            <td>@item.TenSP</td>
+                            <td>@item.TenSize</td>
+                            <td>@item.SoLuong</td>
+                            <td>@item.DonGia.ToString("N0") đ</td>
+                            <td>@item.ThanhTien.ToString("N0") đ</td>
+                            <td>
+                                <a asp-action="XoaMonTaiQuay"
+                                       asp-route-maSp="@item.MaSP"
+                                       asp-route-maSize="@item.MaSize"
+                                       class="btn btn-danger btn-sm">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <h5 class="text-danger mb-0">Tổng tiền: @tongTien.ToString("N0") đ</h5>
+
+                <form asp-action="TaoDonTaiQuay" method="post">
+                    <input type="hidden" name="maKH" value="@Model.MaKH" />
+                    <button type="submit" class="btn btn-primary">
+                        Tạo đơn
+                    </button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info mb-0">Chưa có món nào trong đơn.</div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("sanPhamSelect").addEventListener("change", function () {
+            var maSp = this.value;
+            var sizeSelect = document.getElementById("sizeSelect");
+
+            sizeSelect.innerHTML = '<option value="">-- Chọn size --</option>';
+
+            if (maSp) {
+                fetch('/Admin/LaySizeTheoSanPham?maSp=' + maSp)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(size => {
+                            var option = document.createElement("option");
+                            option.value = size.maSize;
+                            option.text = size.tenSize + " - " + size.donGia.toLocaleString() + " đ";
+                            sizeSelect.appendChild(option);
+                        });
+                    });
+            }
+        });
+    </script>
+}
