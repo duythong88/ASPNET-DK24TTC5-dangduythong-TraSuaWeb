@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+@model List<TraSuaWeb.Models.SanPham>
+
+<div id="homeBannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#homeBannerCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#homeBannerCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#homeBannerCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner rounded-4 overflow-hidden">
+
+        <div class="carousel-item active">
+            <div class="banner-slide" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/images/banner1.jpg');">
+                <div class="banner-content">
+                    <h1>Trà Sữa Phú Quý</h1>
+                    <p>Thơm ngon mỗi ngày - topping hấp dẫn - phục vụ nhanh chóng.</p>
+                    <p><strong>Hotline:</strong> 0988 354 419</p>
+                    <p><strong>Giờ mở cửa:</strong> 07:00 - 22:00</p>
+                    <p><strong>Địa chỉ:</strong> 63/2 Hoàng Hoa Thám, Đặc khu Phú Quý</p>
+                    <p class="shipping-note">🚚 Chỉ nhận giao hàng tại khu vực Đặc khu Phú Quý</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="banner-slide" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/images/banner2.jpg');">
+                <div class="banner-content">
+                    <h1>Menu trà sữa đa dạng</h1>
+                    <p>Nhiều hương vị hấp dẫn, nhiều size lựa chọn phù hợp với mọi khách hàng.</p>
+                    <p><strong>Hotline:</strong> 0988 354 419</p>
+                    <p><strong>Giờ mở cửa:</strong> 07:00 - 22:00</p>
+                    <p><strong>Địa chỉ:</strong> 63/2 Hoàng Hoa Thám, Đặc khu Phú Quý</p>
+                    <p class="shipping-note">📍 Phục vụ giao hàng nội khu Đặc khu Phú Quý</p>
+                    <div class="mt-3">
+                        <a asp-controller="SanPham" asp-action="TraSua" class="btn btn-warning btn-lg me-2">Trà sữa</a>
+                        <a asp-controller="SanPham" asp-action="TraTraiCay" class="btn btn-light btn-lg">Trà trái cây</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="banner-slide" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/images/banner3.jpg');">
+                <div class="banner-content">
+                    <h1>Đặt hàng nhanh chóng</h1>
+                    <p>Đăng ký tài khoản, thêm sản phẩm vào giỏ và đặt hàng online dễ dàng.</p>
+                    <p><strong>Hotline:</strong> 0988 354 419</p>
+                    <p><strong>Giờ mở cửa:</strong> 07:00 - 22:00</p>
+                    <p><strong>Địa chỉ:</strong> 63/2 Hoàng Hoa Thám, Đặc khu Phú Quý</p>
+                    <p class="shipping-note">🚚 Chỉ nhận giao hàng tại khu vực Đặc khu Phú Quý</p>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#homeBannerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#homeBannerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+<div class="container mt-4 mb-4">
+    <form asp-controller="Home" asp-action="Index" method="get">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="input-group">
+                    <input type="text"
+                           name="tuKhoa"
+                           value="@ViewBag.TuKhoa"
+                           class="form-control"
+                           placeholder="Tìm kiếm sản phẩm như: matcha, hồng trà, trà đào..." />
+                    <button type="submit" class="btn btn-warning">Tìm kiếm</button>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Làm mới</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mb-5">
+    <h2 class="section-title text-center mb-4">
+        @if (!string.IsNullOrEmpty(ViewBag.Tukhoa))
+        {
+        <text> Kết quả tìm kiếm</text>    
+        }
+        else
+        { <text>Món nổi bật hôm nay</text> }
+        </h2>
+
+   
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="row g-4">
+            @foreach (var sp in Model)
+            {
+                var giaNhoNhat = sp.SizeSanPhams != null && sp.SizeSanPhams.Any()
+                    ? sp.SizeSanPhams.Min(s => s.DonGia)
+                    : 0;
+                var giaLonNhat = sp.SizeSanPhams != null && sp.SizeSanPhams.Any()
+             ? sp.SizeSanPhams.Max(s => s.DonGia)
+             : 0;
+
+                <div class="col-md-4">
+                    <div class="card milktea-card h-100">
+                        <div class="product-image-box">
+                            <img src="@sp.HinhAnh" alt="@sp.TenSP" />
+                        </div>
+
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@sp.TenSP</h5>
+                            <p class="text-danger fw-bold">
+                                @if (giaNhoNhat == giaLonNhat)
+                                {
+                                    @(giaNhoNhat.ToString("N0") + " đ")
+                                }
+                                else
+                                {
+                                    @(giaNhoNhat.ToString("N0") + " - " + giaLonNhat.ToString("N0") + " đ")
+                                }
+                            </p>
+
+                            <a asp-controller="Home"
+                                   asp-action="DatHangNhanh"
+                                   asp-route-id="@sp.MaSP"
+                                   class="btn btn-success">
+                                Mua ngay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            Không tìm thấy sản phẩm phù hợp.
+        </div>
+    }
+
+</div>
+    <div class="row mt-5 g-4">
+        <div class="col-md-4">
+            <div class="feature-box">
+                <h5>Nguyên liệu chất lượng</h5>
+                <p>Sử dụng trà, sữa và topping được chọn lọc kỹ càng để mang đến hương vị thơm ngon nhất.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-box">
+                <h5>Giao hàng nhanh</h5>
+                <p>Nhận đơn nhanh chóng, đóng gói cẩn thận, giúp ly trà sữa đến tay khách luôn ngon và đẹp.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-box">
+                <h5>Giá cả hợp lý</h5>
+                <p>Nhiều mức giá phù hợp cho học sinh, sinh viên và khách hàng yêu thích trà sữa mỗi ngày.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="promo-box">
+        <h3>Ưu đãi hôm nay</h3>
+        <p>Mua 2 ly bất kỳ tặng 1 topping miễn phí</p>
+        <a href="#" class="btn btn-danger btn-lg">Nhận ưu đãi</a>
+    </div>
+
+</div>

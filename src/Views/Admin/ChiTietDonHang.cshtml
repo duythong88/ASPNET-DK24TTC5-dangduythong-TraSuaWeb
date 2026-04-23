@@ -1,0 +1,46 @@
+﻿@model List<TraSuaWeb.Models.ChiTietDonHang>
+
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+
+<div class="container mt-4">
+    <h2 class="text-info mb-4">Chi tiết đơn hàng #@ViewBag.MaDonHang</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-info">
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Size</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                @foreach (var ct in Model)
+                {
+                    <tr>
+                        <td>@ct.SanPham?.TenSP</td>
+                        <td>@ct.SizeSanPham?.TenSize</td>
+                        <td>@ct.SoLuong</td>
+                        <td>@ct.DonGia.ToString("N0") đ</td>
+                        <td>@ct.ThanhTien.ToString("N0") đ</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Không có chi tiết đơn hàng.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="Admin" asp-action="DonHang" class="btn btn-secondary">
+        Quay lại
+    </a>
+</div>

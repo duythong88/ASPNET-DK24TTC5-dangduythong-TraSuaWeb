@@ -1,0 +1,59 @@
+﻿@model TraSuaWeb.Models.DangKyViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card p-4 shadow" style="width: 450px; border-radius: 12px;">
+        
+        <h3 class="text-center mb-4">Đăng ký</h3>
+    @if (ViewBag.ThongBao != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ThongBao</div>
+    }
+
+    <form asp-action="DangKy" method="post">
+        <div class="mb-3">
+            <label class="form-label">Họ tên</label>
+            <input asp-for="TenKH" class="form-control" />
+        </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+        <div class="mb-3">
+            <label class="form-label">Số điện thoại</label>
+            <input asp-for="SoDT" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Địa chỉ</label>
+            <input asp-for="DiaChi" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tên đăng nhập</label>
+            <input asp-for="TenDangNhap" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <input asp-for="MatKhau" type="password" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Xác nhận mật khẩu</label>
+            <input asp-for="XacNhanMatKhau" type="password" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Đăng ký</button>
+        <a asp-controller="TaiKhoan" asp-action="DangNhap" class="btn btn-link">Đã có tài khoản? Đăng nhập</a>
+    </form>
+</div>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }

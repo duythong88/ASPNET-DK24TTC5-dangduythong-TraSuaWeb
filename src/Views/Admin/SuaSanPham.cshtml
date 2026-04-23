@@ -1,0 +1,70 @@
+﻿@model TraSuaWeb.Models.SanPhamViewModel
+
+@{
+    ViewData["Title"] = "Sửa sản phẩm";
+}
+
+<div class="container mt-4">
+    <h2 class="text-warning mb-4">Sửa sản phẩm</h2>
+
+    <form asp-action="SuaSanPham" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="MaSP" />
+        <input type="hidden" asp-for="MaSize1" />
+        <input type="hidden" asp-for="MaSize2" />
+
+        <div class="mb-3">
+            <label class="form-label">Tên sản phẩm</label>
+            <input asp-for="TenSP" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mã danh mục</label>
+            <input asp-for="MaDanhMuc" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea asp-for="MoTa" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Hình ảnh hiện tại</label><br />
+            @if (!string.IsNullOrEmpty(Model.HinhAnh))
+            {
+                <img src="@Model.HinhAnh" width="120" class="mb-2 border rounded" />
+            }
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Chọn hình mới</label>
+            <input asp-for="FileHinh" type="file" class="form-control" accept="image/*" />
+        </div>
+
+        <hr />
+
+        <h4>Size 1</h4>
+        <div class="mb-3">
+            <label class="form-label">Tên size 1</label>
+            <input asp-for="TenSize1" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Đơn giá 1</label>
+            <input asp-for="DonGia1" class="form-control" />
+        </div>
+
+        <h4>Size 2</h4>
+        <div class="mb-3">
+            <label class="form-label">Tên size 2</label>
+            <input asp-for="TenSize2" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Đơn giá 2</label>
+            <input asp-for="DonGia2" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+        <a asp-controller="Admin" asp-action="SanPham" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
