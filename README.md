@@ -82,7 +82,7 @@ Các bảng chính trong hệ thống:
 
 ![Giỏ hàng](images/cart.png)
 
-### Trang quản trị
+### Trang quản  trị
 
 ![Admin](images/admin.png)
 
