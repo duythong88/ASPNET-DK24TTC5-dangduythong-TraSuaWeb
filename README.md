@@ -98,17 +98,21 @@ Các bảng chính trong hệ thống:
 
 ---
 
-### ▶️ Các bước chạy
-1. Clone project:
-```bash
-git clone https://github.com/username/ten-project.git
+## Hướng dẫn cài đặt
 
-2. Mở bằng Visual Studio
-3. Cấu hình chuỗi kết nối (connection string) trong: appsettings.json
-4. Restore database:
-Import file .bak hoặc chạy script SQL
+1. Tải project về:
+- Clone hoặc Download ZIP từ GitHub
+
+2. Mở project bằng Visual Studio
+
+3. Cấu hình database:
+- Tạo database TraSuaDB trong SQL Server
+- Mở file script SQL và chạy
+
+4. Cập nhật connection string trong appsettings.json
+
 5. Chạy project:
-F5 hoặc Ctrl + F5
+- Nhấn F5 hoặc Ctrl + F5
 
 --------
 📊 Kết quả đạt được
