@@ -79,10 +79,10 @@ Các bảng chính trong hệ thống:
 ![Sản phẩm](images/product.png)
 
 ### Giỏ hàng
-![Giỏ hàng](images/cart.png)
+![Trang giỏ hàng](images/cart.png)
 
 ### Trang quản trị
-![Admin](images/admin.png)
+![Trang quản trị](images/admin.png)
 
 ## 🚀 Hướng dẫn cài đặt và chạy project
 
