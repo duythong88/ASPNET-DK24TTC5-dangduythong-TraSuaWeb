@@ -22,8 +22,9 @@ Trong tuần đầu tiên, em đã tiến hành các công việc sau:
 - Xây dựng ý tưởng và lựa chọn đề tài đồ án
 - Phân tích yêu cầu hệ thống website bán trà sữa
 - Thiết kế cơ sở dữ liệu (Database)
-- Tạo các bảng dữ liệu:  
-  + Sản phẩm  
+- Tạo các bảng dữ liệu:
+  + Sản phẩm
+  + Size sản phẩm
   + Danh mục  
   + Khách hàng  
   + Đơn hàng  
