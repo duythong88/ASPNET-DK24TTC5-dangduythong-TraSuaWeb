@@ -144,7 +144,7 @@ Các bảng chính trong hệ thống:
 
 * Họ tên: Đặng Duy Thông
 * MSSV: 170124506
-* Lớp: DK24TTCS
+* Lớp: DK24TTC5
 * Trường: Đại học Trà Vinh
 
 ⸻
